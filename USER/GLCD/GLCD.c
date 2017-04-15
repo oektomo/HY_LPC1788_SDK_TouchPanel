@@ -22,6 +22,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "GLCD.h"
+#include "AsciiLib.h"
 #include "lpc177x_8x_gpio.h"
 #include "lpc177x_8x_clkpwr.h"
 #include "lpc177x_8x_pinsel.h"
@@ -373,6 +374,78 @@ void GLCD_Clear(uint16_t color)
             GLCD_SetPixel_16bpp(x_pos, y_pos, color);
 		}
     }
+}
+
+
+/******************************************************************************
+* Function Name  : PutChar
+* Description    : 将Lcd屏上任意位置显示一个字符
+* Input          : - Xpos: 水平坐标 
+*                  - Ypos: 垂直坐标  
+*				   - ASCI: 显示的字符
+*				   - charColor: 字符颜色   
+*				   - bkColor: 背景颜色 
+* Output         : None
+* Return         : None
+* Attention		 : None
+*******************************************************************************/
+void PutChar( uint16_t Xpos, uint16_t Ypos, uint8_t ASCI, uint16_t charColor, uint16_t bkColor )
+{
+	uint16_t i, j;
+    uint8_t buffer[16], tmp_char;
+    GetASCIICode(buffer,ASCI);  /* 取字模数据 */
+    for( i=0; i<16; i++ )
+    {
+        tmp_char = buffer[i];
+        for( j=0; j<8; j++ )
+        {
+            if( (tmp_char >> 7 - j) & 0x01 == 0x01 )
+            {
+                GLCD_SetPixel_16bpp( Xpos + j, Ypos + i, charColor );  /* 字符颜色 */
+            }
+            else
+            {
+                GLCD_SetPixel_16bpp( Xpos + j, Ypos + i, bkColor );  /* 背景颜色 */
+            }
+        }
+    }
+}
+
+/******************************************************************************
+* Function Name  : GUI_Text
+* Description    : 在指定座标显示字符串
+* Input          : - Xpos: 行座标
+*                  - Ypos: 列座标 
+*				   - str: 字符串
+*				   - charColor: 字符颜色   
+*				   - bkColor: 背景颜色 
+* Output         : None
+* Return         : None
+* Attention		 : None
+*******************************************************************************/
+void GUI_Text(uint16_t Xpos, uint16_t Ypos, uint8_t *str,uint16_t Color, uint16_t bkColor)
+{
+    uint8_t TempChar;
+    do
+    {
+        TempChar = *str++;  
+        PutChar( Xpos, Ypos, TempChar, Color, bkColor );    
+        if( Xpos < GLCD_X_SIZE - 8 )
+        {
+            Xpos += 8;
+        } 
+        else if ( Ypos < GLCD_Y_SIZE - 16 )
+        {
+            Xpos = 0;
+            Ypos += 16;
+        }   
+        else
+        {
+            Xpos = 0;
+            Ypos = 0;
+        }    
+    }
+    while ( *str != 0 );
 }
 
 /******************************************************************************

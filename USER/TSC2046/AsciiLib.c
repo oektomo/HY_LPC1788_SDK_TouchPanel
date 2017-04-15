@@ -429,8 +429,10 @@ void __GetASCIICode(unsigned char* pBuffer,unsigned char ASCII)
 {  
    memcpy(pBuffer,__AsciiLib[(ASCII - 32)] ,16);
 }
-
-
+void GetASCIICode(unsigned char* pBuffer,unsigned char ASCII)
+{  
+   memcpy(pBuffer,__AsciiLib[(ASCII - 32)] ,16);
+}
 /*********************************************************************************************************
       END FILE
 *********************************************************************************************************/

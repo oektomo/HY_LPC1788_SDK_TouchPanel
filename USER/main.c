@@ -30,6 +30,8 @@
 
  
 #include "TouchPanel.h"
+#include "Calibrate.h"
+#include "GLCD.h"
 
 /*******************************************************************************
 * Function Name  : main
@@ -42,9 +44,9 @@
 int main(void)
 { 
 	TP_Init(); 
-    SDRAM_128Mbit_Init();
+  SDRAM_32M_32BIT_Init();
 	GLCD_Init();	
-	TouchPanel_Calibrate();
+	TouchPanel_Calibrate(GLCD_X_SIZE, GLCD_Y_SIZE);
 	/* Infinite loop */
 	while (1)	
 	{

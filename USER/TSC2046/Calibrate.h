@@ -52,6 +52,7 @@ extern Coordinate  display ;
 
 /* Private function prototypes -----------------------------------------------*/				
 void TouchPanel_Calibrate( uint16_t x_size, uint16_t y_size );
+void calibrate(void);
 void DrawCross(uint16_t Xpos,uint16_t Ypos);
 void TP_DrawPoint(uint16_t Xpos,uint16_t Ypos);
 uint8_t setCalibrationMatrix( Coordinate * displayPtr,Coordinate * screenPtr,Matrix * matrixPtr);

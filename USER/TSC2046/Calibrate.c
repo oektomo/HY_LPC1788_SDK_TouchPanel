@@ -27,8 +27,8 @@
 #include "Calibrate.h"
 
 
-#define  GLCD_X_SIZE  800
-#define  GLCD_Y_SIZE  480
+//#define  GLCD_X_SIZE  800
+//#define  GLCD_Y_SIZE  480
 /******************************************************************************
 * Function Name  : RGB565CONVERT
 * Description    : 24Î»×ª»»16Î»
