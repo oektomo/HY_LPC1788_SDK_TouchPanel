@@ -395,8 +395,8 @@ void TouchPanel_Calibrate( uint16_t x_size, uint16_t y_size )
  // GLCD_X_SIZE / 2,  GLCD_Y_SIZE  
 //	setCalibrationMatrix( &DisplaySample[0],&ScreenSample[0],&matrix ) ;  /* 送入值得到参数 */	   
 	GLCD_Clear(Black);
-	__GUI_Text( (x_size - 280)/2, y_size/2-16, "Thank you for using HY-LPC1788-Core",Red,Black);
-	__GUI_Text( (x_size - 248)/2, y_size/2, "www.powermcu.com www.hotmcu.com",Red,Black);
+	__GUI_Text( (x_size - 240)/2, y_size/2-16, "Have fun using HY-LPC1788-SDK",Red,Black);
+	__GUI_Text( (x_size - 100)/2, y_size/2, "oektomo@gmail.com",White,Black);
 
 }
 

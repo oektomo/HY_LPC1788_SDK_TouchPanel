@@ -1,2 +1,4 @@
-KEIL-MDK/*
+#KEIL-MDK/*
+KEIL-MDK/list*
+KEIL-MDK/obj*
 IAR-EWARM/*
